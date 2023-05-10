@@ -21,21 +21,33 @@ namespace Deadlock___Banker
         {
             int totalProcesses = int.Parse(TB_totalProcess.Text);
             int totalResourceType = int.Parse(TB_totalResourceType.Text);
-            DataTable table = new DataTable();
 
-            table.Columns.Add("Process", typeof(string));
-            //create column
-            for (int res = 0; res < totalResourceType; res++)
+            createEmptyData(dataGridView_Max, totalResourceType, totalProcesses);
+            createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses);
+        
+
+        }
+
+        private void createEmptyData(DataGridView dataGridView, int column, int row)
+        {
+            dataGridView.ColumnCount = column + 1;
+
+            dataGridView.Columns[0].Name = "Process";
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[0].ReadOnly = true;
+            // create all Resource collumn 
+            for (int res = 1; res <= column; res++)
             {
-                string resourceColumnName = "" + (char) (65+res);
-                table.Columns.Add(resourceColumnName, typeof(int));
+                string resourceColumnName = "" + (char)(64 + res);
+                dataGridView.Columns[res].Name = resourceColumnName;
+                dataGridView.Columns[res].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-            //add pre data
-            for (int pro = 1; pro <= totalProcesses; pro++)
+
+            // add space for fill Process's resource
+            for (int pro = 1; pro <= row; pro++)
             {
-                table.Rows.Add("Pos " + pro);
+                dataGridView.Rows.Add("Pos" + pro);
             }
-            //dataGridView1.ColumnAdded
         }
     }
 }

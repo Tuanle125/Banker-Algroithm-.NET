@@ -35,13 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.BT_continue = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_Max = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_Allocation = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Max)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Allocation)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -110,14 +110,14 @@
             this.BT_continue.UseVisualStyleBackColor = true;
             this.BT_continue.Click += new System.EventHandler(this.BT_continue_Click);
             // 
-            // dataGridView1
+            // dataGridView_Max
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(286, 84);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(298, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.dataGridView_Max.AllowUserToAddRows = false;
+            this.dataGridView_Max.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Max.Location = new System.Drawing.Point(286, 84);
+            this.dataGridView_Max.Name = "dataGridView_Max";
+            this.dataGridView_Max.Size = new System.Drawing.Size(298, 150);
+            this.dataGridView_Max.TabIndex = 2;
             // 
             // label4
             // 
@@ -137,14 +137,14 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Allocation";
             // 
-            // dataGridView2
+            // dataGridView_Allocation
             // 
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(623, 84);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(298, 150);
-            this.dataGridView2.TabIndex = 4;
+            this.dataGridView_Allocation.AllowUserToAddRows = false;
+            this.dataGridView_Allocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Allocation.Location = new System.Drawing.Point(623, 84);
+            this.dataGridView_Allocation.Name = "dataGridView_Allocation";
+            this.dataGridView_Allocation.Size = new System.Drawing.Size(298, 150);
+            this.dataGridView_Allocation.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -152,17 +152,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 450);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView_Allocation);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView_Max);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Max)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Allocation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,10 +177,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TB_totalResourceType;
         private System.Windows.Forms.TextBox TB_totalProcess;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView_Max;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView_Allocation;
     }
 }
 
