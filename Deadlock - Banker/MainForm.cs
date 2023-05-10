@@ -19,6 +19,9 @@ namespace Deadlock___Banker
 
         private void BT_continue_Click(object sender, EventArgs e)
         {
+            //== raise error if user input character -> return; ==
+
+            //
             int totalProcesses = int.Parse(TB_totalProcess.Text);
             int totalResourceType = int.Parse(TB_totalResourceType.Text);
 

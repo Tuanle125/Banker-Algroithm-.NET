@@ -39,9 +39,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView_Allocation = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dataGridView_Need = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Allocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Need)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -146,11 +151,51 @@
             this.dataGridView_Allocation.Size = new System.Drawing.Size(336, 150);
             this.dataGridView_Allocation.TabIndex = 4;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(296, 320);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Need";
+            // 
+            // dataGridView_Need
+            // 
+            this.dataGridView_Need.AllowUserToAddRows = false;
+            this.dataGridView_Need.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Need.Location = new System.Drawing.Point(296, 339);
+            this.dataGridView_Need.Name = "dataGridView_Need";
+            this.dataGridView_Need.Size = new System.Drawing.Size(336, 150);
+            this.dataGridView_Need.TabIndex = 6;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(661, 320);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 13);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Output";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(181, 541);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Check";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1022, 576);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dataGridView_Need);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView_Allocation);
             this.Controls.Add(this.label4);
@@ -163,6 +208,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Max)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Allocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Need)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,6 +227,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView_Allocation;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridView_Need;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button1;
     }
 }
 
