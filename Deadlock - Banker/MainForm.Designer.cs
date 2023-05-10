@@ -30,12 +30,18 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TB_totalProcess = new System.Windows.Forms.TextBox();
+            this.TB_totalResourceType = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BT_continue = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -50,31 +56,31 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.BT_continue);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(28, 82);
+            this.groupBox1.Controls.Add(this.TB_totalResourceType);
+            this.groupBox1.Controls.Add(this.TB_totalProcess);
+            this.groupBox1.Location = new System.Drawing.Point(28, 84);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(235, 100);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input";
             // 
-            // textBox1
+            // TB_totalProcess
             // 
-            this.textBox1.Location = new System.Drawing.Point(132, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(97, 20);
-            this.textBox1.TabIndex = 0;
+            this.TB_totalProcess.Location = new System.Drawing.Point(132, 19);
+            this.TB_totalProcess.Name = "TB_totalProcess";
+            this.TB_totalProcess.Size = new System.Drawing.Size(97, 20);
+            this.TB_totalProcess.TabIndex = 0;
             // 
-            // textBox2
+            // TB_totalResourceType
             // 
-            this.textBox2.Location = new System.Drawing.Point(132, 46);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(97, 20);
-            this.textBox2.TabIndex = 1;
+            this.TB_totalResourceType.Location = new System.Drawing.Point(132, 46);
+            this.TB_totalResourceType.Name = "TB_totalResourceType";
+            this.TB_totalResourceType.Size = new System.Drawing.Size(97, 20);
+            this.TB_totalResourceType.TabIndex = 1;
             // 
             // label2
             // 
@@ -94,26 +100,69 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Total Resource Types";
             // 
-            // button1
+            // BT_continue
             // 
-            this.button1.Location = new System.Drawing.Point(155, 71);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Continue";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BT_continue.Location = new System.Drawing.Point(155, 71);
+            this.BT_continue.Name = "BT_continue";
+            this.BT_continue.Size = new System.Drawing.Size(74, 23);
+            this.BT_continue.TabIndex = 4;
+            this.BT_continue.Text = "Continue";
+            this.BT_continue.UseVisualStyleBackColor = true;
+            this.BT_continue.Click += new System.EventHandler(this.BT_continue_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(286, 84);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(298, 150);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(286, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Max";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(623, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Allocation";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(623, 84);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(298, 150);
+            this.dataGridView2.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1022, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,11 +172,15 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BT_continue;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TB_totalResourceType;
+        private System.Windows.Forms.TextBox TB_totalProcess;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
 
