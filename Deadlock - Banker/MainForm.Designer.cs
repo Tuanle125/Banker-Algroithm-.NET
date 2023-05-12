@@ -219,7 +219,7 @@
             // 
             // BT_Update
             // 
-            this.BT_Update.Location = new System.Drawing.Point(832, 325);
+            this.BT_Update.Location = new System.Drawing.Point(832, 319);
             this.BT_Update.Name = "BT_Update";
             this.BT_Update.Size = new System.Drawing.Size(75, 23);
             this.BT_Update.TabIndex = 12;
@@ -328,7 +328,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 585);
+            this.ClientSize = new System.Drawing.Size(930, 571);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.BT_Update);

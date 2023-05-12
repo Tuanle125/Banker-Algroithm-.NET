@@ -15,11 +15,13 @@ namespace Deadlock___Banker
     {
         private int totalProcesses;
         private int totalResourceType;
+        private Banker banker;
 
         public MainForm()
         {
             InitializeComponent();
-
+            banker = new Banker();
+            
         }
 
         private void BT_Create_Click(object sender, EventArgs e)
@@ -39,9 +41,11 @@ namespace Deadlock___Banker
         private void BT_Update_Click(object sender, EventArgs e)
         {
             createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
+            List<List<int>> max = dataGridTo2DList(dataGridView_Max);
+            List<List<int>> allocation = dataGridTo2DList(dataGridView_Allocation);
+            List<int> available = dataGridTo1DList(dataGridView_Available);
+            banker.set
         }
-
-
 
         private void createEmptyData(DataGridView dataGridView, int column, int row, int type)
         {
@@ -121,12 +125,37 @@ namespace Deadlock___Banker
             this.dataGridView_Need.Columns.Clear();
             this.dataGridView_Need.Rows.Clear();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private List< List <int> > dataGridTo2DList(DataGridView dataGridView)
         {
-            
-        }
+            List< List<int> > items = new List< List<int> >();
 
+            foreach(DataGridViewRow row in dataGridView.Rows)
+            {
+                List<int> item = new List<int>();
+
+                for(int i = 1; i < row.Count; i++)
+                {
+                    item.Add(row[i]);
+                }
+                items.Add(item);
+            }
+
+            return items;
+        }
+        private List<int> dataGridTo1DList(DataGridView dataGridView)
+        {
+            List<int> items = new List<int>();
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                for (int i = 1; i < row.Count; i++)
+                {
+                    items.Add(row[i]);
+                }
+            }
+
+            return items;
+        }
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
            
