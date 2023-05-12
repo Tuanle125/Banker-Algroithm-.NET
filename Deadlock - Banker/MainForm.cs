@@ -24,6 +24,7 @@ namespace Deadlock___Banker
 
         private void BT_Create_Click(object sender, EventArgs e)
         {
+            reset();
             //== raise error if user input character -> return; ==
 
             //
@@ -99,11 +100,11 @@ namespace Deadlock___Banker
         {
             totalProcesses = 0;
             totalResourceType = 0;
-            TB_totalProcess.Text = "";
-            TB_totalResourceType.Text = "";
-            //TB_Output = "";
-            //TB_ProcessRequest = "";
-            //TB_ResourceRequest = "";
+            //TB_totalProcess.Text = "";
+            //TB_totalResourceType.Text = "";
+            TB_Output.Text = "";
+            TB_ProcessRequest.Text = "";
+            TB_ResourceRequest.Text = "";
             this.dataGridView_Allocation.DataSource = null;
             this.dataGridView_Allocation.Columns.Clear();
             this.dataGridView_Allocation.Rows.Clear();
@@ -112,13 +113,13 @@ namespace Deadlock___Banker
             this.dataGridView_Available.Columns.Clear();
             this.dataGridView_Available.Rows.Clear();
 
-            //this.dataGridView_Max.DataSource = null;
-            //this.dataGridView_Max.Columns.Clear();
-            //this.dataGridView_Max.Rows.Clear();
+            this.dataGridView_Max.DataSource = null;
+            this.dataGridView_Max.Columns.Clear();
+            this.dataGridView_Max.Rows.Clear();
 
-            //this.dataGridView_Max.DataSource = null;
-            //this.dataGridView_Max.Columns.Clear();
-            //this.dataGridView_Max.Rows.Clear();
+            this.dataGridView_Need.DataSource = null;
+            this.dataGridView_Need.Columns.Clear();
+            this.dataGridView_Need.Rows.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -128,7 +129,7 @@ namespace Deadlock___Banker
 
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
-            reset();
+           
         }
     }
 }
