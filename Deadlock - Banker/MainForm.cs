@@ -150,15 +150,16 @@ namespace Deadlock___Banker
             //check(dataGridView_Allocation);
             //check(dataGridView_Available);
 
-            createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
-
+            // add data to banker
             banker.setTotalProcesses(totalProcesses);
             banker.setTotalResourceType(totalResourceType);
             banker.setMax(dataGridView_Max);
             banker.setAllocate(dataGridView_Allocation);
             banker.setAvailable(dataGridView_Available);
 
-            //dataGridView_Need = banker.getNeed();
+            //banker calculate Need table and fill Need's data to datagridView
+            createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
+            fillData(dataGridView_Need, banker.getNeed());
         }
 
 

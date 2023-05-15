@@ -35,7 +35,6 @@ namespace Deadlock___Banker
         public void setMax(DataGridView max)
         {
             this.max = dataGridTo2DList(max);
-            check(this.max);
         }
         public void setAllocate(DataGridView allocate)
         {
@@ -52,19 +51,20 @@ namespace Deadlock___Banker
             return ListToDataGrid(need);
         }
         private void calculateNeed()
-        {
+        {  
             if(max.Count > 0 && allocate.Count > 0)
             {
-                for(int i = 0; i < max.Count; i++)
+                need = max;
+                for (int i = 0; i < max.Count; i++)
                 {
                     for(int j = 0; j < max[i].Count; j++)
                     {
-                        need[i][j] = max[i][j] - allocate[i][j];
+                        need[i][j] -= allocate[i][j];
                     }
                 }
             }
+            //MessageBox.Show("Can't calculate Need table");
         }
-        
         private DataGridView ListToDataGrid(List<List<int>> list)
         {
             DataGridView dgv_list = new DataGridView();
