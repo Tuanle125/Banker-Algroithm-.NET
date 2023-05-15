@@ -45,11 +45,12 @@ namespace Deadlock___Banker
             this.available = dataGridTo1DList(available);
         }
 
-        public DataGridView getNeed()
+        public List<List<int>> getNeed()
         {
             calculateNeed();
-            return ListToDataGrid(need);
+            return need;
         }
+
         private void calculateNeed()
         {  
             if(max.Count > 0 && allocate.Count > 0)
@@ -64,12 +65,6 @@ namespace Deadlock___Banker
                 }
             }
             //MessageBox.Show("Can't calculate Need table");
-        }
-        private DataGridView ListToDataGrid(List<List<int>> list)
-        {
-            DataGridView dgv_list = new DataGridView();
-            dgv_list.DataSource = list;
-            return dgv_list;
         }
         private List<List<int>> dataGridTo2DList(DataGridView dataGridView)
         {
@@ -104,21 +99,6 @@ namespace Deadlock___Banker
             }
 
             return items;
-        }
-        private void check(List<List<int>> list)
-        {
-            MessageBox.Show(list.Count + " - " + list[0].Count);
-            
-            String s = "";
-            for (int i = 0; i < list.Count; i++)
-            {
-                for (int j = 0; j < list[0].Count; j++)
-                {
-                    s += list[i][j] + " ";
-                }
-                s += " - ";
-            }
-            MessageBox.Show(s);
         }
     }
 }

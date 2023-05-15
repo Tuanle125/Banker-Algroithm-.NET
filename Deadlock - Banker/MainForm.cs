@@ -76,15 +76,24 @@ namespace Deadlock___Banker
             }
         }
 
-        private void fillData(DataGridView dataGridView, DataGridView data)
+        private void fillData(DataGridView dataGridView, List<List<int>> data)
         {
-            for(int i = 0; i < dataGridView.Rows.Count; i++)
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
-                for(int j = 1; j < dataGridView.Columns.Count; j++)
+                for (int j = 1; j < dataGridView.Columns.Count; j++)
                 {
-                    dataGridView.Rows[i].Cells[j].Value = data.Rows[i].Cells[j-1].Value.ToString();
+                    string number = data[i][j-1].ToString();
+                    dataGridView.Rows[i].Cells[j].Value = number;
                 }
             }
+
+            //for (int i = 0; i < dataGridView.Rows.Count; i++)
+            //{
+            //    for(int j = 1; j < dataGridView.Columns.Count; j++)
+            //    {
+            //        dataGridView.Rows[i].Cells[j].Value = data.Rows[i].Cells[j-1].Value.ToString();
+            //    }
+            //}
         }
 
         private void reset()
@@ -146,17 +155,16 @@ namespace Deadlock___Banker
 
         private void BT_Update_Click(object sender, EventArgs e)
         {
-            //check(dataGridView_Max);
-            //check(dataGridView_Allocation);
-            //check(dataGridView_Available);
-
             // add data to banker
             banker.setTotalProcesses(totalProcesses);
             banker.setTotalResourceType(totalResourceType);
             banker.setMax(dataGridView_Max);
             banker.setAllocate(dataGridView_Allocation);
             banker.setAvailable(dataGridView_Available);
-
+            // clear Need table
+            this.dataGridView_Need.DataSource = null;
+            this.dataGridView_Need.Columns.Clear();
+            this.dataGridView_Need.Rows.Clear();
             //banker calculate Need table and fill Need's data to datagridView
             createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
             fillData(dataGridView_Need, banker.getNeed());
