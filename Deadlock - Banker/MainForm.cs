@@ -21,30 +21,6 @@ namespace Deadlock___Banker
         {
             InitializeComponent();
             banker = new Banker();
-            
-        }
-
-        private void BT_Create_Click(object sender, EventArgs e)
-        {
-            reset();
-            //== raise error if user input character -> return; ==
-
-            //
-            totalProcesses = int.Parse(TB_totalProcess.Text);
-            totalResourceType = int.Parse(TB_totalResourceType.Text);
-
-            createEmptyData(dataGridView_Max, totalResourceType, totalProcesses, 1);
-            createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses, 1);
-            createEmptyData(dataGridView_Available, 2, totalResourceType, 0);
-        }
-
-        private void BT_Update_Click(object sender, EventArgs e)
-        {
-            createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
-            List<List<int>> max = dataGridTo2DList(dataGridView_Max);
-            List<List<int>> allocation = dataGridTo2DList(dataGridView_Allocation);
-            List<int> available = dataGridTo1DList(dataGridView_Available);
-            banker.set
         }
 
         private void createEmptyData(DataGridView dataGridView, int column, int row, int type)
@@ -78,7 +54,7 @@ namespace Deadlock___Banker
                     //}
                     //dataGridView.Rows.Add("Pos" + pro, addRow);
 
-                    dataGridView.Rows.Add("Pos" + pro);             
+                    dataGridView.Rows.Add("Pos" + pro);
                 }
             }
             else
@@ -96,6 +72,17 @@ namespace Deadlock___Banker
                 {
                     string resourceRowName = "" + (char)(64 + pro);
                     dataGridView.Rows.Add(resourceRowName, 0);
+                }
+            }
+        }
+
+        private void fillData(DataGridView dataGridView, DataGridView data)
+        {
+            for(int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                for(int j = 1; j < dataGridView.Columns.Count; j++)
+                {
+                    dataGridView.Rows[i].Cells[j].Value = data.Rows[i].Cells[j-1].Value.ToString();
                 }
             }
         }
@@ -125,40 +112,74 @@ namespace Deadlock___Banker
             this.dataGridView_Need.Columns.Clear();
             this.dataGridView_Need.Rows.Clear();
         }
-        private List< List <int> > dataGridTo2DList(DataGridView dataGridView)
+
+        private void check(DataGridView dataGridView)
         {
-            List< List<int> > items = new List< List<int> >();
-
-            foreach(DataGridViewRow row in dataGridView.Rows)
-            {
-                List<int> item = new List<int>();
-
-                for(int i = 1; i < row.Count; i++)
-                {
-                    item.Add(row[i]);
-                }
-                items.Add(item);
-            }
-
-            return items;
-        }
-        private List<int> dataGridTo1DList(DataGridView dataGridView)
-        {
-            List<int> items = new List<int>();
+            String s = "";
 
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
-                for (int i = 1; i < row.Count; i++)
+                for (int i = 1; i < row.Cells.Count; i++)
                 {
-                    items.Add(row[i]);
-                }
-            }
+                    string s_num = row.Cells[i].Value.ToString();
 
-            return items;
+                    s += s_num + " ";
+                }
+                s += " - ";
+            }
+            MessageBox.Show(s);
         }
+
+        private void BT_Create_Click(object sender, EventArgs e)
+        {
+            reset();
+            //== raise error if user input character -> return; ==
+
+            //
+            totalProcesses = int.Parse(TB_totalProcess.Text);
+            totalResourceType = int.Parse(TB_totalResourceType.Text);
+
+            createEmptyData(dataGridView_Max, totalResourceType, totalProcesses, 1);
+            createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses, 1);
+            createEmptyData(dataGridView_Available, 2, totalResourceType, 0);
+        }
+
+        private void BT_Update_Click(object sender, EventArgs e)
+        {
+            //check(dataGridView_Max);
+            //check(dataGridView_Allocation);
+            //check(dataGridView_Available);
+
+            createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
+
+            banker.setTotalProcesses(totalProcesses);
+            banker.setTotalResourceType(totalResourceType);
+            banker.setMax(dataGridView_Max);
+            banker.setAllocate(dataGridView_Allocation);
+            banker.setAvailable(dataGridView_Available);
+
+            //dataGridView_Need = banker.getNeed();
+        }
+
+
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void dataGridView_Max_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView_Max.EditingControl.Text = dataGridView_Max.CurrentCell.Value.ToString();
+        }
+
+        private void dataGridView_Allocation_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView_Allocation.EditingControl.Text = dataGridView_Allocation.CurrentCell.Value.ToString();
+        }
+
+        private void dataGridView_Available_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView_Available.EditingControl.Text = dataGridView_Available.CurrentCell.Value.ToString();
         }
     }
 }

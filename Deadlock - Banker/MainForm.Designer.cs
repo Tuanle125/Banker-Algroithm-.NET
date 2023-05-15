@@ -136,11 +136,14 @@
             // dataGridView_Max
             // 
             this.dataGridView_Max.AllowUserToAddRows = false;
+            this.dataGridView_Max.AllowUserToResizeColumns = false;
+            this.dataGridView_Max.AllowUserToResizeRows = false;
             this.dataGridView_Max.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Max.Location = new System.Drawing.Point(25, 176);
             this.dataGridView_Max.Name = "dataGridView_Max";
             this.dataGridView_Max.Size = new System.Drawing.Size(336, 133);
             this.dataGridView_Max.TabIndex = 2;
+            this.dataGridView_Max.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Max_CellValueChanged);
             // 
             // label4
             // 
@@ -163,11 +166,14 @@
             // dataGridView_Allocation
             // 
             this.dataGridView_Allocation.AllowUserToAddRows = false;
+            this.dataGridView_Allocation.AllowUserToResizeColumns = false;
+            this.dataGridView_Allocation.AllowUserToResizeRows = false;
             this.dataGridView_Allocation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Allocation.Location = new System.Drawing.Point(393, 176);
             this.dataGridView_Allocation.Name = "dataGridView_Allocation";
             this.dataGridView_Allocation.Size = new System.Drawing.Size(336, 133);
             this.dataGridView_Allocation.TabIndex = 4;
+            this.dataGridView_Allocation.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Allocation_CellValueChanged);
             // 
             // label6
             // 
@@ -182,6 +188,8 @@
             // 
             this.dataGridView_Need.AllowUserToAddRows = false;
             this.dataGridView_Need.AllowUserToDeleteRows = false;
+            this.dataGridView_Need.AllowUserToResizeColumns = false;
+            this.dataGridView_Need.AllowUserToResizeRows = false;
             this.dataGridView_Need.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Need.Location = new System.Drawing.Point(25, 360);
             this.dataGridView_Need.MultiSelect = false;
@@ -211,11 +219,14 @@
             // dataGridView_Available
             // 
             this.dataGridView_Available.AllowUserToAddRows = false;
+            this.dataGridView_Available.AllowUserToResizeColumns = false;
+            this.dataGridView_Available.AllowUserToResizeRows = false;
             this.dataGridView_Available.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Available.Location = new System.Drawing.Point(756, 176);
             this.dataGridView_Available.Name = "dataGridView_Available";
             this.dataGridView_Available.Size = new System.Drawing.Size(151, 133);
             this.dataGridView_Available.TabIndex = 11;
+            this.dataGridView_Available.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Available_CellValueChanged);
             // 
             // BT_Update
             // 
@@ -328,7 +339,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 571);
+            this.ClientSize = new System.Drawing.Size(930, 516);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.BT_Update);
