@@ -37,15 +37,13 @@
             this.TB_totalProcess = new System.Windows.Forms.TextBox();
             this.dataGridView_Max = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.dataGridView_Allocation = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView_Need = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.TB_Output = new System.Windows.Forms.TextBox();
-            this.dataGridView_Available = new System.Windows.Forms.DataGridView();
+            this.dataGridView_Total = new System.Windows.Forms.DataGridView();
             this.BT_Update = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.BT_SafeCheck = new System.Windows.Forms.Button();
@@ -55,11 +53,13 @@
             this.TB_ResourceRequest = new System.Windows.Forms.TextBox();
             this.BT_RequestCheck = new System.Windows.Forms.Button();
             this.TB_ProcessRequest = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Allocation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Need)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Available)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Total)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -154,15 +154,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Max";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(390, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Allocation";
-            // 
             // dataGridView_Allocation
             // 
             this.dataGridView_Allocation.AllowUserToAddRows = false;
@@ -216,17 +207,17 @@
             this.TB_Output.Size = new System.Drawing.Size(336, 133);
             this.TB_Output.TabIndex = 10;
             // 
-            // dataGridView_Available
+            // dataGridView_Total
             // 
-            this.dataGridView_Available.AllowUserToAddRows = false;
-            this.dataGridView_Available.AllowUserToResizeColumns = false;
-            this.dataGridView_Available.AllowUserToResizeRows = false;
-            this.dataGridView_Available.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Available.Location = new System.Drawing.Point(756, 176);
-            this.dataGridView_Available.Name = "dataGridView_Available";
-            this.dataGridView_Available.Size = new System.Drawing.Size(151, 133);
-            this.dataGridView_Available.TabIndex = 11;
-            this.dataGridView_Available.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Available_CellValueChanged);
+            this.dataGridView_Total.AllowUserToAddRows = false;
+            this.dataGridView_Total.AllowUserToResizeColumns = false;
+            this.dataGridView_Total.AllowUserToResizeRows = false;
+            this.dataGridView_Total.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Total.Location = new System.Drawing.Point(756, 176);
+            this.dataGridView_Total.Name = "dataGridView_Total";
+            this.dataGridView_Total.Size = new System.Drawing.Size(151, 133);
+            this.dataGridView_Total.TabIndex = 11;
+            this.dataGridView_Total.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Total_CellValueChanged);
             // 
             // BT_Update
             // 
@@ -237,15 +228,6 @@
             this.BT_Update.Text = "Update";
             this.BT_Update.UseVisualStyleBackColor = true;
             this.BT_Update.Click += new System.EventHandler(this.BT_Update_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(753, 157);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 13);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Resources Available";
             // 
             // tabControl1
             // 
@@ -335,15 +317,33 @@
             this.TB_ProcessRequest.Size = new System.Drawing.Size(73, 20);
             this.TB_ProcessRequest.TabIndex = 21;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(390, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Allocation";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(757, 157);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Total Resources";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 516);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label8);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.BT_Update);
-            this.Controls.Add(this.dataGridView_Available);
+            this.Controls.Add(this.dataGridView_Total);
             this.Controls.Add(this.TB_Output);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -361,7 +361,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Max)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Allocation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Need)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Available)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Total)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -382,15 +382,13 @@
         private System.Windows.Forms.TextBox TB_totalProcess;
         private System.Windows.Forms.DataGridView dataGridView_Max;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView_Allocation;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView_Need;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TB_Output;
-        private System.Windows.Forms.DataGridView dataGridView_Available;
+        private System.Windows.Forms.DataGridView dataGridView_Total;
         private System.Windows.Forms.Button BT_Update;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -400,6 +398,8 @@
         private System.Windows.Forms.TextBox TB_ResourceRequest;
         private System.Windows.Forms.Button BT_RequestCheck;
         private System.Windows.Forms.TextBox TB_ProcessRequest;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -15,14 +15,15 @@ namespace Deadlock___Banker
         private List< List<int> > max;
         private List< List<int> > allocate;
         private List< List<int> > need;
-
-        private List <int> available;
+        private List <int> total, safeList, available;
 
         public Banker() {
-            max = new List<List<int>>();
-            allocate = new List<List<int>>();
-            need = new List<List<int>>();
+            max =       new List<List<int>>();
+            allocate =  new List<List<int>>();
+            need =      new List<List<int>>();
+            total =     new List<int>();
             available = new List<int>();
+            safeList =  new List<int>();
         }
         public void setTotalProcesses(int totalProcesses)
         {
@@ -40,17 +41,55 @@ namespace Deadlock___Banker
         {
             this.allocate = dataGridTo2DList(allocate);
         }
-        public void setAvailable(DataGridView available)
+        public void setTotal(DataGridView total)
         {
-            this.available = dataGridTo1DList(available);
+            this.total = dataGridTo1DList(total);
         }
-
         public List<List<int>> getNeed()
         {
             calculateNeed();
             return need;
         }
 
+        public bool safeCheck()
+        {
+            calculateAvailable();
+
+            int process = 0;
+            while (safeList.Count != totalProcesses)
+            {
+
+
+                //
+                for(int j = 0; j < available.Count; j++)
+                {
+                    available[j] += allocate[process][j];
+                }
+                safeList.Add(process);
+                //
+                process++;
+            }
+            return true;    
+        }
+
+        private void calculateAvailable()
+        {
+            List<int> temp = new List<int>();
+            for(int i = 0; i < totalResourceType; i++)
+            {
+                int sum = 0;
+                for(int j = 0; j < totalProcesses; j++)
+                {
+                    sum += allocate[j][i];
+                }
+                temp.Add(sum);
+            }
+            available = total;
+            for (int i = 0; i < totalResourceType; i++)
+            {
+                available[i] -= temp[i];
+            }
+        }
         private void calculateNeed()
         {  
             if(max.Count > 0 && allocate.Count > 0)
@@ -99,6 +138,16 @@ namespace Deadlock___Banker
             }
 
             return items;
+        }
+    
+        private void check(List<int> list)
+        {
+            string s = "";
+            for (int i = 0; i < totalResourceType; i++)
+            {
+                s += list[i].ToString() + " ";
+            }
+            MessageBox.Show(s);
         }
     }
 }
