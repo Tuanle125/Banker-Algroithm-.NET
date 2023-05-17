@@ -9,3 +9,14 @@ D:\Bi\DH\Subject\OS (Hệ Điều Hành)\Banker Algorithm Project\BankerAlgorith
 D:\Bi\DH\Subject\OS (Hệ Điều Hành)\Banker Algorithm Project\BankerAlgorithm\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.CoreCompileInputs.cache
 D:\Bi\DH\Subject\OS (Hệ Điều Hành)\Banker Algorithm Project\BankerAlgorithm\Deadlock - Banker\obj\Debug\Deadlock - Banker.exe
 D:\Bi\DH\Subject\OS (Hệ Điều Hành)\Banker Algorithm Project\BankerAlgorithm\Deadlock - Banker\obj\Debug\Deadlock - Banker.pdb
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\bin\Debug\Deadlock - Banker.exe.config
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\bin\Debug\Deadlock - Banker.exe
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\bin\Debug\Deadlock - Banker.pdb
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.AssemblyReference.cache
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.SuggestedBindingRedirects.cache
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock___Banker.MainForm.resources
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock___Banker.Properties.Resources.resources
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.GenerateResource.cache
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.exe
+C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.pdb
