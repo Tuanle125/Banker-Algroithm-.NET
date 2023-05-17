@@ -54,24 +54,45 @@ namespace Deadlock___Banker
         public bool safeCheck()
         {
             calculateAvailable();
-
             int process = 0;
+            bool deadlock = true;
+            List<int> work = available;
+            List<bool> finish = new List<bool>();
+
+            for(int i = 0;i < totalProcesses; i++)
+            {
+                finish.Add(false);
+            }
             while (safeList.Count != totalProcesses)
             {
-
-
-                //
-                for(int j = 0; j < available.Count; j++)
+                if(process == totalProcesses + 1)
                 {
-                    available[j] += allocate[process][j];
+                    if (deadlock) return false;
+                    else
+                    {
+                        deadlock = true;
+                        process = 0;
+                        continue;
+                    }
                 }
-                safeList.Add(process);
-                //
+                if (finish[process] == false)
+                {
+                    if (isGreaterThan(work, need[process]))
+                    {
+                        for (int j = 0; j < work.Count; j++)
+                        {
+                            work[j] += allocate[process][j];
+                        }
+                        safeList.Add(process);
+                        finish[process] = true;
+                    }
+                    deadlock = false;
+                }
                 process++;
             }
             return true;    
         }
-
+   
         private void calculateAvailable()
         {
             List<int> temp = new List<int>();
@@ -139,7 +160,14 @@ namespace Deadlock___Banker
 
             return items;
         }
-    
+        private bool isGreaterThan(List<int> a, List<int> b)
+        {
+            for(int i = 0; i < a.Count; i++)
+            {
+                if (a[i] < b[i]) return false;
+            }
+            return true;
+        }
         private void check(List<int> list)
         {
             string s = "";

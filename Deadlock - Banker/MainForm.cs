@@ -159,7 +159,7 @@ namespace Deadlock___Banker
 
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
-            banker.safeCheck();
+
         }
 
         private void dataGridView_Max_CellValueChanged(object sender, DataGridViewCellEventArgs e)
