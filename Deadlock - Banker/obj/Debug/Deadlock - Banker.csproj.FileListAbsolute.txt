@@ -20,3 +20,14 @@ C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\
 C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.exe
 C:\Users\Administrator\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.pdb
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\bin\Debug\Deadlock - Banker.exe.config
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\bin\Debug\Deadlock - Banker.exe
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\bin\Debug\Deadlock - Banker.pdb
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.AssemblyReference.cache
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.SuggestedBindingRedirects.cache
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock___Banker.MainForm.resources
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock___Banker.Properties.Resources.resources
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.GenerateResource.cache
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.csproj.CoreCompileInputs.cache
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.exe
+C:\Users\gywnl\Source\Repos\Banker-Algroithm-.NET\Deadlock - Banker\obj\Debug\Deadlock - Banker.pdb

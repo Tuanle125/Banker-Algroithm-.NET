@@ -45,7 +45,7 @@ namespace Deadlock___Banker
                 }
 
                 // add space for fill Process's resource
-                for (int pro = 0; pro <= row; pro++)
+                for (int pro = 1; pro <= row; pro++)
                 {
                     dataGridView.Rows.Add("Pos" + pro);
                 }
@@ -206,14 +206,14 @@ namespace Deadlock___Banker
                     int temp;
                     if (!Int32.TryParse(dataGridView_Total[j, i].Value.ToString(), out temp))
                     {
-                        MessageBox.Show("Dữ liệu Total Resources không hợp lệ tại vị trí [" + (i+1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        MessageBox.Show("Dữ liệu Total Resources không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
                         dataGridView_Total[j, i].Selected = true;
                         dataGridView_Total.BeginEdit(true);
                         return false;
                     }
                     else if (temp < 0)
                     {
-                        MessageBox.Show("Giá trị Total Resources không hợp lệ tại vị trí [" + (i+1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        MessageBox.Show("Giá trị Total Resources không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
                         dataGridView_Total[j, i].Selected = true;
                         dataGridView_Total.BeginEdit(true);
                         return false;
