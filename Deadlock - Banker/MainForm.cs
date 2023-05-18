@@ -128,7 +128,16 @@ namespace Deadlock___Banker
         {
             reset();
             //== raise error if user input character -> return; ==
-
+            if (!int.TryParse(TB_totalProcess.Text, out int totalProcesses))
+            {
+                MessageBox.Show("Please enter an integer for totalProcesses.");
+                return;
+            }
+            if (!int.TryParse(TB_totalResourceType.Text, out int totalResourceType))
+            {
+                MessageBox.Show("Please enter an integer for totalResourceType.");
+                return;
+            }
             //
             totalProcesses = int.Parse(TB_totalProcess.Text);
             totalResourceType = int.Parse(TB_totalResourceType.Text);
@@ -137,11 +146,107 @@ namespace Deadlock___Banker
             createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses, 1);
             createEmptyData(dataGridView_Total, 2, totalResourceType, 0);
         }
+        private bool checkMaxTable()
+        {
+            for (int i = 0; i < dataGridView_Max.Rows.Count; i++)
+            {
+                for (int j = 1; j < dataGridView_Max.Columns.Count; j++)
+                {
+                    int temp;
+                    if (!Int32.TryParse(dataGridView_Max[j, i].Value.ToString(), out temp))
+                    {
+                        MessageBox.Show("Dữ liệu MaxTable không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        dataGridView_Max[j, i].Selected = true;
+                        dataGridView_Max.BeginEdit(true);
+                        return false;
+                    }
+                    else if (temp < 0)
+                    {
+                        MessageBox.Show("Giá trị MaxTable không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        dataGridView_Max[j, i].Selected = true;
+                        dataGridView_Max.BeginEdit(true);
+                        return false;
+                        
+                    }
+                }
+            }
+            return true;
+        }
+        private bool checkAllocationTable()
+        {
+            for (int i = 0; i < dataGridView_Allocation.Rows.Count; i++)
+            {
+                for (int j = 1; j < dataGridView_Allocation.Columns.Count; j++)
+                {
+                    int temp;
+                    if (!Int32.TryParse(dataGridView_Allocation[j, i].Value.ToString(), out temp))
+                    {
+                        MessageBox.Show("Dữ liệu AllocationTable không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        dataGridView_Allocation[j, i].Selected = true;
+                        dataGridView_Allocation.BeginEdit(true);
+                        return false;
+                    }
+                    else if (temp < 0)
+                    {
+                        MessageBox.Show("Giá trị AllocationTable không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) +"]. Vui lòng nhập lại!", "Lỗi");
+                        dataGridView_Allocation[j, i].Selected = true;
+                        dataGridView_Allocation.BeginEdit(true);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private bool checkTotalTable()
+        {
+            for (int i = 0; i < dataGridView_Total.Rows.Count; i++)
+            {
+                for (int j = 1; j < dataGridView_Total.Columns.Count; j++)
+                {
+                    int temp;
+                    if (!Int32.TryParse(dataGridView_Total[j, i].Value.ToString(), out temp))
+                    {
+                        MessageBox.Show("Dữ liệu Total Resources không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        dataGridView_Total[j, i].Selected = true;
+                        dataGridView_Total.BeginEdit(true);
+                        return false;
+                    }
+                    else if (temp < 0)
+                    {
+                        MessageBox.Show("Giá trị Total Resources không hợp lệ tại vị trí [" + (i + 1) + ", " + (j) + "]. Vui lòng nhập lại!", "Lỗi");
+                        dataGridView_Total[j, i].Selected = true;
+                        dataGridView_Total.BeginEdit(true);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private bool checkNeedTable()
+        {
+            for (int i = 0; i < dataGridView_Need.Rows.Count; i++)
+            {
+                for (int j = 1; j < dataGridView_Need.Columns.Count; j++)
+                {
+                    if (int.Parse(dataGridView_Need[j, i].Value.ToString()) < 0)
+                    {
+                        MessageBox.Show("Giá trị Need không hợp lệ. Vui lòng nhập lại!", "Lỗi");
+
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
         private void BT_Update_Click(object sender, EventArgs e)
         {
             //check max, allocation, available table
-
+            if (!checkMaxTable() || !checkAllocationTable() || !checkTotalTable())
+            {
+                // nếu có dữ liệu không hợp lệ thì không thực hiện tiếp
+                return;
+            }
             // add data to banker
             banker.setTotalProcesses(totalProcesses);
             banker.setTotalResourceType(totalResourceType);
@@ -155,13 +260,14 @@ namespace Deadlock___Banker
             //banker calculate Need table and fill Need's data to datagridView
             createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
             fillData(dataGridView_Need, banker.getNeed());
+            if(!checkNeedTable()) { return; }   
         }
 
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
 
         }
-
+            
         private void dataGridView_Max_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView_Max.EditingControl.Text = dataGridView_Max.CurrentCell.Value.ToString();

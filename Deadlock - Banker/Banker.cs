@@ -109,6 +109,11 @@ namespace Deadlock___Banker
             for (int i = 0; i < totalResourceType; i++)
             {
                 available[i] -= temp[i];
+                if (available[i] < 0)
+                {
+                    MessageBox.Show("Lỗi tính toán. Giá trị của available không được âm. Vui lòng nhập lại", "Lỗi");
+                    return;
+                }
             }
         }
         private void calculateNeed()
