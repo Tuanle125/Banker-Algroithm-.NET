@@ -116,21 +116,45 @@ namespace Deadlock___Banker
                 }
             }
         }
+        private bool checkNeedTable(List<List<int>> need)
+        {
+            for (int i = 0; i < need.Count; i++)
+            {
+                for (int j = 0; j < need[i].Count; j++)
+                {
+                    if (need[i][j] < 0)
+                    {
+                        MessageBox.Show("Need table contains negative values");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         private void calculateNeed()
-        {  
-            if(max.Count > 0 && allocate.Count > 0)
+        {
+            if (max.Count > 0 && allocate.Count > 0)
             {
                 need = max;
                 for (int i = 0; i < max.Count; i++)
                 {
-                    for(int j = 0; j < max[i].Count; j++)
+                    for (int j = 0; j < max[i].Count; j++)
                     {
                         need[i][j] -= allocate[i][j];
                     }
                 }
+                if (checkNeedTable(need))
+                {
+                    MessageBox.Show("Need table created");
+                }
             }
-            //MessageBox.Show("Can't calculate Need table");
+            else
+            {
+                MessageBox.Show("Can't calculate Need table");
+            }
         }
+
         private List<List<int>> dataGridTo2DList(DataGridView dataGridView)
         {
             List<List<int>> items = new List<List<int>>();
