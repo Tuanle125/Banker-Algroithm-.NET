@@ -59,13 +59,14 @@ namespace Deadlock___Banker
             List<int> work = available;
             List<bool> finish = new List<bool>();
 
-            for(int i = 0;i < totalProcesses; i++)
+            for (int i = 0; i < totalProcesses; i++)
             {
                 finish.Add(false);
             }
-            while (safeList.Count != totalProcesses)
+
+            while (safeList.Count < totalProcesses)
             {
-                if(process == totalProcesses + 1)
+                if (process == totalProcesses)
                 {
                     if (deadlock) return false;
                     else
@@ -75,22 +76,34 @@ namespace Deadlock___Banker
                         continue;
                     }
                 }
+                bool found = false;
+                for (int i = 0; i < totalProcesses; i++)
+                {
+                    if (finish[i] == false && isGreaterThan(work, need[i]))
+                    {
+                        found = true;
+                        process = i;
+                        break;
+                    }
+                }
+                if (!found)
+                {
+                    process++;
+                    continue;
+                }
                 if (finish[process] == false)
                 {
-                    if (isGreaterThan(work, need[process]))
+                    for (int j = 0; j < work.Count; j++)
                     {
-                        for (int j = 0; j < work.Count; j++)
-                        {
-                            work[j] += allocate[process][j];
-                        }
-                        safeList.Add(process);
-                        finish[process] = true;
+                        work[j] += allocate[process][j];
                     }
+                    finish[process] = true;
+                    safeList.Add(process);
                     deadlock = false;
                 }
                 process++;
             }
-            return true;    
+            return true;
         }
    
         private void calculateAvailable()
@@ -191,7 +204,7 @@ namespace Deadlock___Banker
         }
         private bool isGreaterThan(List<int> a, List<int> b)
         {
-            for(int i = 0; i < a.Count; i++)
+            for (int i = 0; i < a.Count; i++)
             {
                 if (a[i] < b[i]) return false;
             }

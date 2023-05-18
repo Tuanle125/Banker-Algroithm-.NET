@@ -267,6 +267,14 @@ namespace Deadlock___Banker
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
 
+            if (banker.safeCheck())
+            {
+                TB_Output.Text = "Các tiến trình đang chạy an toàn.";
+            }
+            else
+            {
+                TB_Output.Text = "Các tiến trình đang bị deadlock.";
+            }
         }
             
         private void dataGridView_Max_CellValueChanged(object sender, DataGridViewCellEventArgs e)
