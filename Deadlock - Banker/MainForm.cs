@@ -145,6 +145,8 @@ namespace Deadlock___Banker
             createEmptyData(dataGridView_Max, totalResourceType, totalProcesses, 1);
             createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses, 1);
             createEmptyData(dataGridView_Total, 2, totalResourceType, 0);
+            createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
+
         }
         private bool checkMaxTable()
         {
@@ -222,22 +224,22 @@ namespace Deadlock___Banker
             }
             return true;
         }
-        private bool checkNeedTable()
-        {
-            for (int i = 0; i < dataGridView_Need.Rows.Count; i++)
-            {
-                for (int j = 1; j < dataGridView_Need.Columns.Count; j++)
-                {
-                    if (int.Parse(dataGridView_Need[j, i].Value.ToString()) < 0)
-                    {
-                        MessageBox.Show("Giá trị Need không hợp lệ. Vui lòng nhập lại!", "Lỗi");
+        //private bool checkNeedTable()
+        //{
+        //    for (int i = 0; i < dataGridView_Need.Rows.Count; i++)
+        //    {
+        //        for (int j = 1; j < dataGridView_Need.Columns.Count; j++)
+        //        {
+        //            if (int.Parse(dataGridView_Need[j, i].Value.ToString()) < 0)
+        //            {
+        //                MessageBox.Show("Giá trị Need không hợp lệ. Vui lòng nhập lại!", "Lỗi");
 
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
 
         private void BT_Update_Click(object sender, EventArgs e)
         {
@@ -254,18 +256,25 @@ namespace Deadlock___Banker
             banker.setAllocate(dataGridView_Allocation);
             banker.setTotal(dataGridView_Total);
             // clear Need table
-            this.dataGridView_Need.DataSource = null;
-            this.dataGridView_Need.Columns.Clear();
-            this.dataGridView_Need.Rows.Clear();
+            //this.dataGridView_Need.DataSource = null;
+            //this.dataGridView_Need.Columns.Clear();
+            //this.dataGridView_Need.Rows.Clear();
             //banker calculate Need table and fill Need's data to datagridView
-            createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
+            //createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1); 
             fillData(dataGridView_Need, banker.getNeed());
-            if(!checkNeedTable()) { return; }   
         }
 
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
 
+            if (banker.safeCheck())
+            {
+                TB_Output.Text = "Các tiến trình đang chạy an toàn.";
+            }
+            else
+            {
+                TB_Output.Text = "Các tiến trình đang bị deadlock.";
+            }
         }
             
         private void dataGridView_Max_CellValueChanged(object sender, DataGridViewCellEventArgs e)
