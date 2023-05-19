@@ -138,15 +138,14 @@ namespace Deadlock___Banker
                 MessageBox.Show("Please enter an integer for totalResourceType.");
                 return;
             }
-            //
-            totalProcesses = int.Parse(TB_totalProcess.Text);
-            totalResourceType = int.Parse(TB_totalResourceType.Text);
+            
+            this.totalProcesses = int.Parse(TB_totalProcess.Text);
+            this.totalResourceType = int.Parse(TB_totalResourceType.Text);
 
             createEmptyData(dataGridView_Max, totalResourceType, totalProcesses, 1);
             createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses, 1);
             createEmptyData(dataGridView_Total, 2, totalResourceType, 0);
             createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1);
-
         }
         private bool checkMaxTable()
         {
@@ -249,6 +248,8 @@ namespace Deadlock___Banker
                 // nếu có dữ liệu không hợp lệ thì không thực hiện tiếp
                 return;
             }
+            TB_Output.Text = "";
+            banker.clear();
             // add data to banker
             banker.setTotalProcesses(totalProcesses);
             banker.setTotalResourceType(totalResourceType);
@@ -261,15 +262,17 @@ namespace Deadlock___Banker
             //this.dataGridView_Need.Rows.Clear();
             //banker calculate Need table and fill Need's data to datagridView
             //createEmptyData(dataGridView_Need, totalResourceType, totalProcesses, 1); 
-            fillData(dataGridView_Need, banker.getNeed());
+            if (!banker.calculateAvailable()) return;
+            if (banker.isNeedTableSave()) { 
+                fillData(dataGridView_Need, banker.getNeed());
+            }
         }
 
         private void BT_SafeCheck_Click(object sender, EventArgs e)
         {
-
             if (banker.safeCheck())
             {
-                TB_Output.Text = "Các tiến trình đang chạy an toàn.";
+                TB_Output.Text = "Các tiến trình chạy an toàn" + "\r\n" + banker.getSafeList();
             }
             else
             {
@@ -281,12 +284,10 @@ namespace Deadlock___Banker
         {
             dataGridView_Max.EditingControl.Text = dataGridView_Max.CurrentCell.Value.ToString();
         }
-
         private void dataGridView_Allocation_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView_Allocation.EditingControl.Text = dataGridView_Allocation.CurrentCell.Value.ToString();
         }
-
         private void dataGridView_Total_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView_Total.EditingControl.Text = dataGridView_Total.CurrentCell.Value.ToString();

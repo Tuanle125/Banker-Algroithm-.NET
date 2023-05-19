@@ -47,13 +47,20 @@ namespace Deadlock___Banker
         }
         public List<List<int>> getNeed()
         {
-            calculateNeed();
             return need;
         }
-
+        public string getSafeList()
+        {
+            string s = "";
+            for(int i = 0; i < safeList.Count; i++)
+            {
+                s += "P" + safeList[i];
+                if(i != safeList.Count-1) s += " -> ";
+            }
+            return s;
+        }
         public bool safeCheck()
         {
-            calculateAvailable();
             int process = 0;
             bool deadlock = true;
             List<int> work = available;
@@ -63,7 +70,6 @@ namespace Deadlock___Banker
             {
                 finish.Add(false);
             }
-
             while (safeList.Count < totalProcesses)
             {
                 if (process == totalProcesses)
@@ -76,27 +82,16 @@ namespace Deadlock___Banker
                         continue;
                     }
                 }
-                bool found = false;
-                for (int i = 0; i < totalProcesses; i++)
+ 
+                if (finish[process] == false && isGreaterThan(work, need[process]))
                 {
-                    if (finish[i] == false && isGreaterThan(work, need[i]))
-                    {
-                        found = true;
-                        process = i;
-                        break;
-                    }
-                }
-                if (!found)
-                {
-                    process++;
-                    continue;
-                }
-                if (finish[process] == false)
-                {
+                    check("work", work);
+                    check("need[" + process + "]", need[process]);
                     for (int j = 0; j < work.Count; j++)
                     {
                         work[j] += allocate[process][j];
                     }
+                    
                     finish[process] = true;
                     safeList.Add(process);
                     deadlock = false;
@@ -106,10 +101,11 @@ namespace Deadlock___Banker
             return true;
         }
    
-        private void calculateAvailable()
+        public bool calculateAvailable()
         {
             List<int> temp = new List<int>();
-            for(int i = 0; i < totalResourceType; i++)
+            List<int> temp_available = new List<int>();
+            for (int i = 0; i < totalResourceType; i++)
             {
                 int sum = 0;
                 for(int j = 0; j < totalProcesses; j++)
@@ -118,16 +114,37 @@ namespace Deadlock___Banker
                 }
                 temp.Add(sum);
             }
-            available = total;
+            //check("temp",temp);
+            temp_available = total;
             for (int i = 0; i < totalResourceType; i++)
             {
-                available[i] -= temp[i];
-                if (available[i] < 0)
+                temp_available[i] -= temp[i];
+                if (temp_available[i] < 0)
                 {
-                    MessageBox.Show("Lỗi tính toán. Giá trị của available không được âm. Vui lòng nhập lại", "Lỗi");
-                    return;
+                    MessageBox.Show("Tài nguyên của Allocate lớn hơn Tài nguyên của Total. Vui lòng nhập lại", "Lỗi");
+                    return false;
                 }
             }
+            available = temp_available;
+            //check("available",available);
+            return true;
+        }
+        public bool isNeedTableSave()
+        {
+            calculateNeed();
+            return checkNeedTable(need);
+        }
+
+        public void clear()
+        {
+            totalProcesses = 0;
+            totalResourceType = 0;
+            max.Clear();
+            allocate.Clear();
+            need.Clear();
+            total.Clear();
+            available.Clear();
+            safeList.Clear();
         }
         private bool checkNeedTable(List<List<int>> need)
         {
@@ -137,14 +154,13 @@ namespace Deadlock___Banker
                 {
                     if (need[i][j] < 0)
                     {
-                        MessageBox.Show("Need table contains negative values");
+                        MessageBox.Show("Tài nguyên của Allocate đã lớn Max !");
                         return false;
                     }
                 }
             }
             return true;
         }
-
         private void calculateNeed()
         {
             if (max.Count > 0 && allocate.Count > 0)
@@ -157,14 +173,10 @@ namespace Deadlock___Banker
                         need[i][j] -= allocate[i][j];
                     }
                 }
-                if (checkNeedTable(need))
-                {
-                    MessageBox.Show("Need table created");
-                }
             }
             else
             {
-                MessageBox.Show("Can't calculate Need table");
+                MessageBox.Show("Không thể tính bảng Need");
             }
         }
 
@@ -210,12 +222,25 @@ namespace Deadlock___Banker
             }
             return true;
         }
-        private void check(List<int> list)
+        private void check(string name, List<int> list)
         {
-            string s = "";
-            for (int i = 0; i < totalResourceType; i++)
+            string s = name + ": ";
+            for (int i = 0; i < list.Count; i++)
             {
                 s += list[i].ToString() + " ";
+            }
+            MessageBox.Show(s);
+        }
+        private void check(string name, List<List<int>> list)
+        {
+            string s = name + ": ";
+            for (int i = 0; i < list.Count; i++)
+            {
+                for (int j = 0; j < list[0].Count; j++)
+                {
+                    s += list[i][j].ToString() + " ";
+                }
+                s += "- ";
             }
             MessageBox.Show(s);
         }
