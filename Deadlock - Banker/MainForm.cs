@@ -130,12 +130,12 @@ namespace Deadlock___Banker
             //== raise error if user input character -> return; ==
             if (!int.TryParse(TB_totalProcess.Text, out int totalProcesses))
             {
-                MessageBox.Show("Please enter an integer for totalProcesses.");
+                MessageBox.Show("Hãy nhập tổng Process ở dạng số nguyên.");
                 return;
             }
             if (!int.TryParse(TB_totalResourceType.Text, out int totalResourceType))
             {
-                MessageBox.Show("Please enter an integer for totalResourceType.");
+                MessageBox.Show("Hãy nhập tổng tài nguyên ở dạng số nguyên.");
                 return;
             }
             

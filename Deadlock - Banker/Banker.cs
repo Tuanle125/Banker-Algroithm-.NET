@@ -85,15 +85,15 @@ namespace Deadlock___Banker
  
                 if (finish[process] == false && isGreaterThan(work, need[process]))
                 {
-                    check("work", work);
-                    check("need[" + process + "]", need[process]);
+                    //check("work", work);
+                    //check("need[" + process + "]", need[process]);
                     for (int j = 0; j < work.Count; j++)
                     {
                         work[j] += allocate[process][j];
                     }
                     
                     finish[process] = true;
-                    safeList.Add(process);
+                    safeList.Add(process+1);
                     deadlock = false;
                 }
                 process++;
