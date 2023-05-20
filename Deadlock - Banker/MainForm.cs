@@ -141,6 +141,8 @@ namespace Deadlock___Banker
             
             this.totalProcesses = int.Parse(TB_totalProcess.Text);
             this.totalResourceType = int.Parse(TB_totalResourceType.Text);
+            banker.setTotalProcesses(totalProcesses);
+            banker.setTotalResourceType(totalResourceType);
 
             createEmptyData(dataGridView_Max, totalResourceType, totalProcesses, 1);
             createEmptyData(dataGridView_Allocation, totalResourceType, totalProcesses, 1);
@@ -223,22 +225,6 @@ namespace Deadlock___Banker
             }
             return true;
         }
-        //private bool checkNeedTable()
-        //{
-        //    for (int i = 0; i < dataGridView_Need.Rows.Count; i++)
-        //    {
-        //        for (int j = 1; j < dataGridView_Need.Columns.Count; j++)
-        //        {
-        //            if (int.Parse(dataGridView_Need[j, i].Value.ToString()) < 0)
-        //            {
-        //                MessageBox.Show("Giá trị Need không hợp lệ. Vui lòng nhập lại!", "Lỗi");
-
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //    return true;
-        //}
 
         private void BT_Update_Click(object sender, EventArgs e)
         {
@@ -251,8 +237,6 @@ namespace Deadlock___Banker
             TB_Output.Text = "";
             banker.clear();
             // add data to banker
-            banker.setTotalProcesses(totalProcesses);
-            banker.setTotalResourceType(totalResourceType);
             banker.setMax(dataGridView_Max);
             banker.setAllocate(dataGridView_Allocation);
             banker.setTotal(dataGridView_Total);
@@ -279,7 +263,85 @@ namespace Deadlock___Banker
                 TB_Output.Text = "Các tiến trình đang bị deadlock.";
             }
         }
+        private void BT_RequestCheck_Click(object sender, EventArgs e)
+        {
+            TB_Output.Text = "";
+            string s = "";
+            List<int> resources = new List<int>();
+
+            if (!int.TryParse(TB_ProcessRequest.Text, out int totalProcesses))
+            {
+                MessageBox.Show("Hãy nhập Process ở dạng số nguyên.");
+                return;
+            }
+            int process = int.Parse(TB_ProcessRequest.Text);
+            if(process <=0 || process > totalProcesses)
+            {
+                MessageBox.Show("Tổng Process chỉ có "+ totalProcesses);
+                return;
+            }
+
+            for (int i = 0; i <= TB_ResourceRequest.Text.Length; i++)
+            {
+                if (i == TB_ResourceRequest.Text.Length)
+                {
+                    if (s == "") break;
+                    else
+                    {
+                        if (!int.TryParse(s, out int i_num))
+                        {
+                            MessageBox.Show("Hãy nhập mỗi lượng Resource ở dạng số nguyên và cách nhau bằng 1 dấu cách.");
+                            return;
+                        }
+                        else
+                        {
+                            int number = int.Parse(s);
+                            resources.Add(number);
+                            s = "";
+                            break;
+                        }
+                    } 
+                }
+                if (TB_ResourceRequest.Text[i] == ' ')
+                {
+                    if (!int.TryParse(s, out int i_num))
+                    {
+                        MessageBox.Show("Hãy nhập mỗi lượng Resource ở dạng số nguyên và cách nhau bằng 1 dấu cách.");
+                        return;
+                    }
+                    else
+                    {
+                        int number = int.Parse(s);
+                        resources.Add(number);
+                        s = "";
+                    }
+                }
+                else s += TB_ResourceRequest.Text[i];
+            }
+            if(resources.Count < totalResourceType || resources.Count > totalResourceType)
+            {
+                MessageBox.Show("Tổng số loại Resource phải bằng "+totalResourceType);
+                return;
+            }
+
+            s = "Request: P" + process+" (";
+            for (int i = 0; i < resources.Count; i++)
+            {
+                s += resources[i].ToString();
+                if (i != resources.Count - 1) s += ", ";
+            }
             
+
+            if (banker.requestCheck(process-1,resources))
+            {
+                TB_Output.Text = s+ ")\r\n" + "Các tiến trình chạy an toàn" + "\r\n" + banker.getSafeList();
+            }
+            else
+            {
+                TB_Output.Text = "Các tiến trình đang bị deadlock.";
+            }
+
+        }
         private void dataGridView_Max_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView_Max.EditingControl.Text = dataGridView_Max.CurrentCell.Value.ToString();
@@ -292,5 +354,6 @@ namespace Deadlock___Banker
         {
             dataGridView_Total.EditingControl.Text = dataGridView_Total.CurrentCell.Value.ToString();
         }
+
     }
 }

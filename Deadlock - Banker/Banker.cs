@@ -63,9 +63,13 @@ namespace Deadlock___Banker
         {
             int process = 0;
             bool deadlock = true;
-            List<int> work = available;
+            List<int> work = new List<int>();
             List<bool> finish = new List<bool>();
-
+            for (int j = 0; j < totalResourceType; j++)
+            {
+                work.Add(available[j]);
+            }
+            safeList.Clear();
             for (int i = 0; i < totalProcesses; i++)
             {
                 finish.Add(false);
@@ -82,11 +86,8 @@ namespace Deadlock___Banker
                         continue;
                     }
                 }
- 
                 if (finish[process] == false && isGreaterThan(work, need[process]))
                 {
-                    //check("work", work);
-                    //check("need[" + process + "]", need[process]);
                     for (int j = 0; j < work.Count; j++)
                     {
                         work[j] += allocate[process][j];
@@ -100,7 +101,50 @@ namespace Deadlock___Banker
             }
             return true;
         }
-   
+        public bool requestCheck(int process, List<int> resources)
+        {
+            List<int> save_available = new List<int>();
+            List<List<int>> save_allocate = new List<List<int>>();
+            List<List<int>> save_need = new List<List<int>>();
+
+            for (int i = 0; i< totalProcesses; i++)
+            {
+                List<int> row_alloc = new List<int>();
+                List<int> row_need = new List<int>();
+                for (int j = 0; j < totalResourceType; j++)
+                {
+                    row_alloc.Add(allocate[i][j]);
+                    row_need.Add(need[i][j]);
+                }
+                save_allocate.Add(row_alloc);
+                save_need.Add(row_need);
+            }
+            for (int j = 0; j < totalResourceType; j++)
+            {
+                save_available.Add(available[j]);
+            }
+
+            if (isGreaterThan(resources, need[process])) return false;
+            if (isGreaterThan(resources, available)) return false;
+
+            for (int i = 0; i < totalResourceType; i++)
+            {
+                available[i] -= resources[i];
+                allocate[process][i] += resources[i];
+                need[process][i] -= resources[i];
+            }
+
+            bool result = safeCheck();
+
+            available.Clear();
+            allocate.Clear();
+            need.Clear();  
+            available = save_available;
+            allocate = save_allocate;
+            need = save_need;
+
+            return result;
+        }
         public bool calculateAvailable()
         {
             List<int> temp = new List<int>();
@@ -114,7 +158,7 @@ namespace Deadlock___Banker
                 }
                 temp.Add(sum);
             }
-            //check("temp",temp);
+            
             temp_available = total;
             for (int i = 0; i < totalResourceType; i++)
             {
@@ -126,25 +170,14 @@ namespace Deadlock___Banker
                 }
             }
             available = temp_available;
-            //check("available",available);
+            
             return true;
         }
+
         public bool isNeedTableSave()
         {
             calculateNeed();
             return checkNeedTable(need);
-        }
-
-        public void clear()
-        {
-            totalProcesses = 0;
-            totalResourceType = 0;
-            max.Clear();
-            allocate.Clear();
-            need.Clear();
-            total.Clear();
-            available.Clear();
-            safeList.Clear();
         }
         private bool checkNeedTable(List<List<int>> need)
         {
@@ -180,6 +213,19 @@ namespace Deadlock___Banker
             }
         }
 
+        public void clear()
+        {
+            //totalProcesses = 0;
+            //totalResourceType = 0;
+            max.Clear();
+            allocate.Clear();
+            need.Clear();
+            total.Clear();
+            available.Clear();
+            safeList.Clear();
+        }
+
+        //==========================================================================
         private List<List<int>> dataGridTo2DList(DataGridView dataGridView)
         {
             List<List<int>> items = new List<List<int>>();
